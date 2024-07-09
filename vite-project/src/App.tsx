@@ -1,15 +1,19 @@
 import "./App.css";
-import Box from "@mui/material/Box";
 import Navbar from "./components/Navbar/Navbar";
-import { useState } from "react";
+import Home from "./components/Home/Home";
+import Filter from "./components/Filter/Filter";
+
+import Stack from "@mui/material/Stack";
+import Banner from "./components/Banner/Banner";
 
 function App() {
-  const [hamburgerMenuOpen, setHamburgerMenuOpen] = useState(false);
-
   return (
-    <Box>
-      <Navbar open={hamburgerMenuOpen} setOpen={setHamburgerMenuOpen} />
-    </Box>
+    <Stack sx={{ marginTop: "110px", padding: "1rem" }}>
+      <Navbar />
+      <Filter />
+      <Banner />
+      <Home />
+    </Stack>
   );
 }
 

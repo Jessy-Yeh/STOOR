@@ -33,7 +33,11 @@ const Product = ({ product }: Props) => {
     <Grid container spacing={2}>
       <Grid item xs={6} md={4}>
         <Item>
-          <img src={product.image} alt={product.description} />
+          <img
+            src={product.image}
+            alt={product.description}
+            style={{ width: "100%" }}
+          />
           <div>
             <p>{product.title}</p>
             <p>{product.price}</p>
