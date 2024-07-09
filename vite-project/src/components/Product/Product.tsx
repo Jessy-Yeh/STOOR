@@ -1,7 +1,7 @@
+import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
 
 type Product = {
   id: number;
@@ -20,32 +20,38 @@ interface Props {
   product: Product;
 }
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
 const Product = ({ product }: Props) => {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={6} md={4}>
-        <Item>
-          <img
-            src={product.image}
-            alt={product.description}
-            style={{ width: "100%" }}
-          />
-          <div>
-            <p>{product.title}</p>
-            <p>{product.price}</p>
-          </div>
-          <Button>VIEW PRODUCT</Button>
-        </Item>
-      </Grid>
-    </Grid>
+    <Box>
+      <img
+        src={product.image}
+        alt={product.description}
+        style={{ width: "100%" }}
+      />
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        sx={{
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap",
+          gap: "2rem",
+          maxWidth: "100%",
+        }}
+      >
+        <Typography>{product.title}</Typography>
+        <Typography>£{product.price}</Typography>
+      </Stack>
+      <Stack direction="row" spacing={2}>
+        <Typography>{product.rating.rate}</Typography>
+        <Typography>from {product.rating.count} reviews</Typography>
+      </Stack>
+      <Button
+        variant="contained"
+        sx={{ backgroundColor: "black", margin: "1rem", width: "100%" }}
+      >
+        VIEW PRODUCT
+      </Button>
+    </Box>
   );
 };
 
