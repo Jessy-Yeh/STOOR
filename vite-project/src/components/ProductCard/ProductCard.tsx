@@ -46,7 +46,7 @@ const ProductCard = ({ product }: Props) => {
         <Typography>{product.rating.rate}</Typography>
         <Typography>from {product.rating.count} reviews</Typography>
       </Stack>
-      <NavLink to="products/">
+      <NavLink to={`product/${product.id}`}>
         <Button
           variant="contained"
           sx={{ backgroundColor: "black", margin: "1rem", width: "100%" }}

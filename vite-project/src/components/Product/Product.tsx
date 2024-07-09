@@ -13,22 +13,50 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+};
 
 const Product = () => {
   const [descriptionOpen, setDescriptionOpen] = useState(true);
   const [ratingOpen, setRatingOpen] = useState(true);
   const [deliveryOpen, setDeliveryOpen] = useState(true);
+  const [product, setProduct] = useState<Product | undefined>();
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`https://fakestoreapi.com/products/${id}`)
+      .then((res) => setProduct(res.data));
+  }, [id]);
 
   return (
     <Box p={1}>
       <Navbar />
-      <Stack sx={{ marginTop: "6rem" }}>
-        <img />
-        <Stack>
+      <Stack sx={{ marginTop: "6rem", width: "80vw", margin: "0 auto" }}>
+        <img
+          src={product?.image}
+          alt={product?.description}
+          style={{ width: "100%" }}
+        />
+        <Stack sx={{ backgroundColor: "#F4F4F4" }}>
           <Typography variant="h2" sx={{ fontSize: "32px" }}>
-            Product Name
+            {product?.title}
           </Typography>
           <Box sx={{ marginTop: "1rem" }}>
             <FormControl fullWidth>
