@@ -1,5 +1,4 @@
 import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
@@ -14,7 +13,9 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import Box from "@mui/material/Box";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const drawerWidth = 200;
 
@@ -109,13 +110,31 @@ const Navbar = () => {
         </DrawerHeader>
         <Divider />
         <List>
-          {["HOME", "T-SHIRTS", "JEANS", "SHOES", "CART"].map((text) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem key="home" component={NavLink} to="/">
+            <ListItemButton>
+              <ListItemText primary="HOME" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="tshirts" component={NavLink} to="t-shirts">
+            <ListItemButton>
+              <ListItemText primary="T-SHIRTS" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="jeans" component={NavLink} to="jeans">
+            <ListItemButton>
+              <ListItemText primary="JEANS" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="shoes" component={NavLink} to="shoes">
+            <ListItemButton>
+              <ListItemText primary="SHOES" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key="cart" component={NavLink} to="cart">
+            <ListItemButton>
+              <ListItemText primary="CART" />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </Box>

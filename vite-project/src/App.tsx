@@ -1,14 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
-// import Navbar from "./components/Navbar/Navbar";
-// import Filter from "./components/Filter/Filter";
-// import Banner from "./components/Banner/Banner";
 
-// import Stack from "@mui/material/Stack";
-import Checkout from "./components/Checkout/Checkout";
+import Checkout from "./components/Product/Product";
 import Tshirts from "./components/T-shirts/Tshirts";
 import Jeans from "./components/Jeans/Jeans";
 import Shoes from "./components/Shoes/Shoes";
@@ -20,35 +15,29 @@ const router = createBrowserRouter([
     // errorElement: <ErrorPage />,
   },
   {
-    path: "HOME",
-    element: <Home />,
-    // errorElement: <ErrorPage />,
+    path: "product/:id",
+    element: <Checkout />,
   },
   {
     path: "checkout",
     element: <Checkout />,
   },
   {
-    path: "T-SHIRTS",
+    path: "t-shirts",
     element: <Tshirts />,
   },
   {
-    path: "JEANS",
+    path: "jeans",
     element: <Jeans />,
   },
   {
-    path: "SHOES",
+    path: "shoes",
     element: <Shoes />,
   },
 ]);
 
 function App() {
-  return (
-    <>
-      {" "}
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
