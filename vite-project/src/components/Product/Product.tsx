@@ -1,20 +1,17 @@
 import Stack from "@mui/material/Stack";
 import Navbar from "../Navbar/Navbar";
-import {
-  Button,
-  Collapse,
-  Divider,
-  List,
-  ListItemButton,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
+
 import { useEffect, useState } from "react";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -32,9 +29,6 @@ type Product = {
 };
 
 const Product = () => {
-  const [descriptionOpen, setDescriptionOpen] = useState(true);
-  const [ratingOpen, setRatingOpen] = useState(true);
-  const [deliveryOpen, setDeliveryOpen] = useState(true);
   const [product, setProduct] = useState<Product | undefined>();
 
   const { id } = useParams();
@@ -46,9 +40,9 @@ const Product = () => {
   }, [id]);
 
   return (
-    <Box p={1}>
+    <Box>
       <Navbar />
-      <Stack sx={{ marginTop: "6rem", width: "80vw", margin: "0 auto" }}>
+      <Stack sx={{ marginTop: "6rem", margin: "0 auto" }}>
         <img
           src={product?.image}
           alt={product?.description}
@@ -87,51 +81,38 @@ const Product = () => {
             ADD TO BAG
           </Button>
 
-          <List
-            sx={{
-              width: "100%",
-              bgcolor: "background.paper",
-              marginTop: "2rem",
-            }}
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-          >
-            <ListItemButton
-              onClick={() => setDescriptionOpen(!descriptionOpen)}
-            >
-              <ListItemText primary="DESCRIPTION" />
-              {descriptionOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={descriptionOpen} timeout="auto" unmountOnExit>
-              <Typography>product's description</Typography>
-            </Collapse>
-            <Divider />
-
-            <ListItemButton onClick={() => setRatingOpen(!ratingOpen)}>
-              <ListItemText primary="PRODUCT RATING" />
-              {ratingOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={ratingOpen} timeout="auto" unmountOnExit>
-              <Typography>product's rating</Typography>
-            </Collapse>
-            <Divider />
-
-            <ListItemButton onClick={() => setDeliveryOpen(!deliveryOpen)}>
-              <ListItemText primary="DELIVERY OPTIONS" />
-              {deliveryOpen ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={deliveryOpen} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="Collect from the store" />
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemText primary="delivery to home" />
-                </ListItemButton>
-              </List>
-            </Collapse>
-            <Divider />
-          </List>
+          <div>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                DESCRIPTION
+              </AccordionSummary>
+              <AccordionDetails>{product?.description}</AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2-content"
+                id="panel2-header"
+              >
+                PRODUCT RATING
+              </AccordionSummary>
+              <AccordionDetails>{product?.rating.rate}</AccordionDetails>
+            </Accordion>
+            <Accordion defaultExpanded>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel3-content"
+                id="panel3-header"
+              >
+                DELIVERY OPTIONS
+              </AccordionSummary>
+              <AccordionDetails>WIP</AccordionDetails>
+            </Accordion>
+          </div>
         </Stack>
       </Stack>
     </Box>
