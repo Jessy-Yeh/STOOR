@@ -3,22 +3,10 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { NavLink } from "react-router-dom";
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+import { ProductType } from "../../types";
 
 interface Props {
-  product: Product;
+  product: ProductType;
 }
 
 const ProductCard = ({ product }: Props) => {

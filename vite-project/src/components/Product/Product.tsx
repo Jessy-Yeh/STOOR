@@ -14,22 +14,10 @@ import NativeSelect from "@mui/material/NativeSelect";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+import { ProductType } from "../../types";
 
 const Product = () => {
-  const [product, setProduct] = useState<Product | undefined>();
+  const [product, setProduct] = useState<ProductType | undefined>();
   const [bagMsg, setBagMsg] = useState(false);
 
   const { id } = useParams();
