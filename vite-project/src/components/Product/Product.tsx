@@ -30,6 +30,7 @@ type Product = {
 
 const Product = () => {
   const [product, setProduct] = useState<Product | undefined>();
+  const [bagMsg, setBagMsg] = useState(false);
 
   const { id } = useParams();
 
@@ -39,10 +40,32 @@ const Product = () => {
       .then((res) => setProduct(res.data));
   }, [id]);
 
+  const handleClick = () => {
+    const reqBody = { products: [{ productId: id, quantity: 1 }] };
+    axios.post("https://fakestoreapi.com/carts", reqBody).then((res) => {
+      console.log(res.data);
+      setBagMsg(true);
+    });
+  };
+
   return (
     <Box>
       <Navbar />
-      <Stack sx={{ marginTop: "6rem", margin: "0 auto" }}>
+      {bagMsg && (
+        <Stack
+          sx={{
+            backgroundColor: "#6FCF97",
+            marginTop: "98px",
+            padding: "1rem",
+          }}
+          alignItems="center"
+        >
+          <Typography>
+            Thank you, product name has been added to your bag!
+          </Typography>
+        </Stack>
+      )}
+      <Stack sx={{ margin: "1rem" }}>
         <img
           src={product?.image}
           alt={product?.description}
@@ -77,12 +100,13 @@ const Product = () => {
               marginTop: "1rem",
               width: "100%",
             }}
+            onClick={handleClick}
           >
             ADD TO BAG
           </Button>
 
           <div>
-            <Accordion>
+            <Accordion sx={{ backgroundColor: "#F4F4F4" }}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1-content"
@@ -92,7 +116,7 @@ const Product = () => {
               </AccordionSummary>
               <AccordionDetails>{product?.description}</AccordionDetails>
             </Accordion>
-            <Accordion>
+            <Accordion sx={{ backgroundColor: "#F4F4F4" }}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2-content"
@@ -102,7 +126,7 @@ const Product = () => {
               </AccordionSummary>
               <AccordionDetails>{product?.rating.rate}</AccordionDetails>
             </Accordion>
-            <Accordion defaultExpanded>
+            <Accordion sx={{ backgroundColor: "#F4F4F4" }}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel3-content"
