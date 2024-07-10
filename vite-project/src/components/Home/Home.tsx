@@ -45,8 +45,8 @@ const Home = () => {
     <>
       <Navbar />
       <div style={{ marginTop: "110px" }}>
-        <Filter categories={uniqueCategories} />
         <Banner />
+        <Filter categories={uniqueCategories} />
         <Grid
           container
           spacing={2}
