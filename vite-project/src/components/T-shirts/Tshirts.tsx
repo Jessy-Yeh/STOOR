@@ -1,10 +1,22 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Layout } from "../common/Layout";
 
 const Tshirts = () => {
   return (
     <Layout>
-      <Typography m="120px 1rem">T-shirts</Typography>
+      <Box
+        sx={{
+          paddingLeft: { xs: "16px", md: "24px" },
+          paddingRight: { xs: "16px", md: "24px" },
+          maxWidth: "1800px",
+          marginTop: "97.1px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingTop: { xs: "16px", md: "24px" },
+        }}
+      >
+        <Typography>T-shirts</Typography>
+      </Box>
     </Layout>
   );
 };
