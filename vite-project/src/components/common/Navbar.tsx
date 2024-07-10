@@ -117,6 +117,7 @@ const Navbar = () => {
             direction="row"
             alignItems="center"
             justifyContent="space-between"
+            sx={{ maxWidth: "2000px", margin: "0 auto" }}
           >
             {isLargeScreen && (
               <List
