@@ -11,55 +11,81 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <Stack sx={{ width: { xs: "400px", md: "300px" } }}>
-      <img
-        src={product.image}
-        alt={product.description}
-        style={{ width: "100%", height: "100%" }}
-      />
-      <Stack
-        direction="row"
-        justifyContent="space-between"
+    <Stack
+      sx={{
+        height: "100%",
+        justifyContent: "space-between",
+      }}
+    >
+      <Box
         sx={{
-          textOverflow: "ellipsis",
-          whiteSpace: "nowrap",
-          gap: "2rem",
-          maxWidth: "100%",
+          aspectRatio: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <Typography>{product.title}</Typography>
-        <Typography>£{product.price}</Typography>
-      </Stack>
-      <Stack direction="row" spacing={2}>
-        {/* <Typography>{product.rating.rate}</Typography> */}
-        <Box
+        <img
+          src={product.image}
+          alt={product.description}
+          style={{ maxWidth: "100%", maxHeight: "300px" }}
+        />
+      </Box>
+      <Stack>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
           sx={{
-            width: 200,
-            display: "flex",
-            alignItems: "center",
+            gap: "4rem",
+            maxWidth: "100%",
+            marginTop: "1rem",
           }}
         >
-          <Rating
-            name="rating"
-            value={product.rating.rate}
-            readOnly
-            precision={0.5}
-            sx={{ color: "black" }}
-            emptyIcon={
-              <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-            }
-          />
-        </Box>
-        <Typography>from {product.rating.count} reviews</Typography>
-      </Stack>
-      <NavLink to={`product/${product.id}`}>
-        <Button
-          variant="contained"
-          sx={{ backgroundColor: "black", marginTop: "1rem", width: "100%" }}
+          <Typography sx={{ fontSize: "14px", textAlign: "left" }}>
+            {product.title}
+          </Typography>
+          <Typography sx={{ fontSize: "14px" }}>£{product.price}</Typography>
+        </Stack>
+
+        <Stack
+          direction="row"
+          spacing={{ xs: 2, md: 0 }}
+          justifyContent={{ md: "flex-start" }}
+          alignItems="flex-end"
+          m="1rem 0 0 0"
         >
-          VIEW PRODUCT
-        </Button>
-      </NavLink>
+          <Box
+            sx={{
+              width: 130,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Rating
+              name="rating"
+              value={product.rating.rate}
+              readOnly
+              precision={0.5}
+              sx={{ color: "black", height: "100%" }}
+              emptyIcon={
+                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+              }
+            />
+          </Box>
+          <Typography sx={{ fontSize: "10px" }}>
+            from {product.rating.count} reviews
+          </Typography>
+        </Stack>
+        <NavLink to={`product/${product.id}`}>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "black", marginTop: "1rem", width: "100%" }}
+          >
+            VIEW PRODUCT
+          </Button>
+        </NavLink>
+      </Stack>
     </Stack>
   );
 };
