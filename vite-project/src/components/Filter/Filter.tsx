@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Checkbox, Typography } from "@mui/material";
+import { Box, Checkbox, Typography } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 interface FilterProps {
@@ -11,18 +11,9 @@ const Filter = ({ categories }: FilterProps) => {
   const activeFilters: Array<string> =
     searchParams.get("categories")?.split(",") || [];
 
-  // we want the checkboxes to be checked or not checked based on this value
-  // this is step 1 :)
-  // step 2 we can do later, which is to add the onChange function to update the url when we click one of the boxes
-
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // we want to update the value of the "categories" url query parameter
-    // to do this, we need to know:
-    // 1) what is already checked (if any)
-    // 2) which category the user clicked
-
     const { name } = event.target;
     const isChecked = activeFilters.includes(name);
 
@@ -52,21 +43,23 @@ const Filter = ({ categories }: FilterProps) => {
   };
 
   return (
-    <div>
-      <div>
-        <Typography>Filter by category</Typography>
-        {categories.map((category) => {
-          return (
-            <FilterOption
-              key={category}
-              category={category}
-              checked={activeFilters.includes(category)}
-              onChange={handleChange}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <Box
+      width={{ md: "270px" }}
+      p={{ xs: "0.5rem", md: "1rem 1rem 1rem 0" }}
+      m={{ xs: "1rem 0 1rem 0" }}
+    >
+      <Typography m={{ md: "0 0 1.5rem 0" }}>Filter by category</Typography>
+      {categories.map((category) => {
+        return (
+          <FilterOption
+            key={category}
+            category={category}
+            checked={activeFilters.includes(category)}
+            onChange={handleChange}
+          />
+        );
+      })}
+    </Box>
   );
 };
 
@@ -83,6 +76,7 @@ const FilterOption = ({ checked, category, onChange }: FilterOptionProps) => {
         <Checkbox checked={checked} onChange={onChange} name={category} />
       }
       label={category}
+      sx={{ textTransform: "capitalize" }}
     />
   );
 };
