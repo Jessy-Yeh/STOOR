@@ -31,4 +31,12 @@ describe("when price contains a decimal point", () => {
 
     expect(result).toBe("39.54");
   });
+
+  it("should return the price as it is if there are no digits after decimal point", () => {
+    // prettier-ignore
+    const price = 39.;
+    const result = formatPrice(price);
+
+    expect(result).toBe("39");
+  });
 });
