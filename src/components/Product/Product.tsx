@@ -93,7 +93,6 @@ const Product = () => {
         ) : (
           <Stack
             direction={{ md: "row" }}
-            gap={{ md: "2rem" }}
             sx={{
               flex: "1",
               minHeight: "100vh",
@@ -105,14 +104,40 @@ const Product = () => {
               p={{ xs: "0 1rem" }}
               m={{ xs: "120px 0 1rem 0", md: "0" }}
               flex="1"
-              sx={{ height: { md: "100vh" } }}
+              sx={{
+                height: { md: "100vh" },
+                position: "relative",
+              }}
             >
-              <img
-                src={product?.image}
-                alt={product?.description}
-                style={{ width: "100%", maxWidth: "350px" }}
-              />
+              {product && product?.rating.rate >= 4 ? (
+                <Typography
+                  sx={{
+                    border: "1px #E0E0E0 solid",
+                    borderRadius: "50px",
+                    padding: "5px 24px",
+                    position: "absolute",
+                    right: { xs: "10px", md: "18px" },
+                    top: { xs: 0, md: "118px" },
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    textTransform: "capitalize",
+                  }}
+                >
+                  Highly Rated
+                </Typography>
+              ) : null}
+              <Box sx={{ margin: { xs: "60px 1rem 1rem 1rem" } }}>
+                <img
+                  src={product?.image}
+                  alt={product?.description}
+                  style={{
+                    width: "100%",
+                    maxWidth: "350px",
+                  }}
+                />
+              </Box>
             </Stack>
+
             <Stack
               sx={{
                 backgroundColor: "#F4F4F4",
