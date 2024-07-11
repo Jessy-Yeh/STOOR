@@ -135,7 +135,7 @@ const Navbar = () => {
               noWrap
               sx={{
                 fontSize: "20px",
-                fontWeight: "bold",
+                fontWeight: 500,
                 textAlign: "center",
                 position: "absolute",
                 left: "50%",

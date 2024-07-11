@@ -20,6 +20,7 @@ const Banner = () => {
           sx={{
             maxWidth: "700px",
             textAlign: "center",
+            fontSize: "14px",
           }}
         >
           Lorem ipsum dolor sit amet consectetur. Nullam leo condimentum turpis

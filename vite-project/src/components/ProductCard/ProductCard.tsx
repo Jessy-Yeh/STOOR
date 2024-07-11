@@ -42,24 +42,29 @@ const ProductCard = ({ product }: Props) => {
             marginTop: "1rem",
           }}
         >
-          <Typography sx={{ fontSize: "14px", textAlign: "left" }}>
+          <Typography
+            sx={{ fontSize: "14px", textAlign: "left", fontWeight: 500 }}
+          >
             {product.title}
           </Typography>
-          <Typography sx={{ fontSize: "14px" }}>£{product.price}</Typography>
+          <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+            £{product.price}
+          </Typography>
         </Stack>
 
         <Stack
           direction="row"
           spacing={{ xs: 2, md: 0 }}
           justifyContent={{ md: "flex-start" }}
-          alignItems="flex-end"
+          alignItems="center"
           m="1rem 0 0 0"
+          gap="10px"
         >
           <Box
             sx={{
-              width: 130,
               display: "flex",
               alignItems: "center",
+              marginRight: "1rem",
             }}
           >
             <Rating
@@ -67,20 +72,25 @@ const ProductCard = ({ product }: Props) => {
               value={product.rating.rate}
               readOnly
               precision={0.5}
-              sx={{ color: "black", height: "100%" }}
+              sx={{ color: "black", fontSize: "13px" }}
               emptyIcon={
                 <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
               }
             />
           </Box>
-          <Typography sx={{ fontSize: "10px" }}>
+          <Typography sx={{ fontSize: "11px" }}>
             from {product.rating.count} reviews
           </Typography>
         </Stack>
         <NavLink to={`product/${product.id}`}>
           <Button
             variant="contained"
-            sx={{ backgroundColor: "black", marginTop: "1rem", width: "100%" }}
+            sx={{
+              backgroundColor: "black",
+              marginTop: "1rem",
+              width: "100%",
+              fontSize: "14px",
+            }}
           >
             VIEW PRODUCT
           </Button>

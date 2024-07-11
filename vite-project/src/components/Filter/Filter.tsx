@@ -48,7 +48,9 @@ const Filter = ({ categories }: FilterProps) => {
       p={{ xs: "0.5rem", md: "1rem 1rem 1rem 0" }}
       m={{ xs: "1rem 0 1rem 0" }}
     >
-      <Typography m={{ md: "0 0 1.5rem 0" }}>Filter by category</Typography>
+      <Typography m={{ md: "0 0 1.5rem 0", fontSize: "14px" }}>
+        Filter by category
+      </Typography>
       {categories.map((category) => {
         return (
           <FilterOption
@@ -75,8 +77,11 @@ const FilterOption = ({ checked, category, onChange }: FilterOptionProps) => {
       control={
         <Checkbox checked={checked} onChange={onChange} name={category} />
       }
-      label={category}
-      sx={{ textTransform: "capitalize" }}
+      label={
+        <Typography sx={{ textTransform: "capitalize", fontSize: "14px " }}>
+          {category}
+        </Typography>
+      }
     />
   );
 };
