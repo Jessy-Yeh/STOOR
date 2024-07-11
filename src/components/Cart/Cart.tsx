@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Layout } from "../common/Layout";
+import { Error } from "../common/Error";
 import { ProductType } from "../../types";
 import { formatPrice } from "../../utils/formatPrice";
 
@@ -30,16 +31,16 @@ const Cart = () => {
   const [userProducts, setUserProducts] = useState<UserProductType[]>([]);
   const [allProducts, setAllProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const randomCartNumber = Math.floor(Math.random() * 7) + 1;
 
   useEffect(() => {
     setLoading(true);
-    console.log(randomCartNumber);
     axios
       .get(`https://fakestoreapi.com/carts/${randomCartNumber}`)
       .then((res) => setUserProducts(res.data.products))
-      .catch((error) => console.log(error))
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
 
@@ -50,7 +51,7 @@ const Cart = () => {
       .then((response) => {
         setAllProducts(response.data);
       })
-      .catch((error) => console.log(error))
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
 
@@ -85,7 +86,16 @@ const Cart = () => {
         }}
         component="main"
       >
-        {loading ? (
+        {error ? (
+          <Box
+            sx={{
+              paddingTop: { xs: "16px", md: "24px" },
+            }}
+            component="main"
+          >
+            <Error />
+          </Box>
+        ) : loading ? (
           <Box
             sx={{
               display: "flex",
