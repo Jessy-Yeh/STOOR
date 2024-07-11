@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+# STOOR - Jie-Jun Yeh
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Front-end for [fakestoreAPI](https://fakestoreapi.com/docs).
 
-Currently, two official plugins are available:
+## Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install dependencies by running `npm i`, then run `npm run dev` to start the local server.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Typescript
+- React
+- Material UI
+- Vite
 
-- Configure the top-level `parserOptions` property like this:
+## Task Achievements
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+✅ Responsive Design
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+✅ Component-Based Architecture
+
+✅ Consistent Coding Style
+
+✅ State Management
+
+✅ Error Handling
+
+✅ Eye for detail
+
+✅ Going beyond the brief
+
+## Going beyond the brief
+
+✨ On smaller screens, the menu would be converted to a hamburger menu.
+
+✨ Added a Cart page. Currently, it is fetching random cart from the fake API.
+
+✨ The filtered categories are reflected in the URL, which is useful for users to share links.
+
+✨ The label of highly rated appears only when the rating of the product is higher than 4.
