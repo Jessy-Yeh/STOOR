@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { NavLink } from "react-router-dom";
 import { ProductType } from "../../types";
+import { formatPrice } from "../../utils/formatPrice.ts";
 
 interface Props {
   product: ProductType;
@@ -48,7 +49,7 @@ const ProductCard = ({ product }: Props) => {
             {product.title}
           </Typography>
           <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-            £{product.price}
+            £{formatPrice(product.price)}
           </Typography>
         </Stack>
 
