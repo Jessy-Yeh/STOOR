@@ -33,10 +33,13 @@ const Cart = () => {
   const [allProducts, setAllProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const randomCartNumber = Math.floor(Math.random() * 7) + 1;
+
   useEffect(() => {
     setLoading(true);
+    console.log(randomCartNumber);
     axios
-      .get("https://fakestoreapi.com/carts/5")
+      .get(`https://fakestoreapi.com/carts/${randomCartNumber}`)
       .then((res) => setUserProducts(res.data.products))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
