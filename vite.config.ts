@@ -8,7 +8,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "./setup-tests.ts",
   },
   optimizeDeps: {
     include: ["@mui/material", "@emotion/react", "@emotion/styled"],
