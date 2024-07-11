@@ -50,6 +50,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
+const menuItemsData = [
+  { to: "/", caption: "Home" },
+  { to: "/t-shirts", caption: "T-shirts" },
+  { to: "/jeans", caption: "Jeans" },
+  { to: "/shoes", caption: "Shoes" },
+];
+
 const Navbar = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -63,30 +70,21 @@ const Navbar = () => {
     setOpen(false);
   };
 
-  const menuItems = (
-    <>
-      <ListItem sx={{ color: "black", whiteSpace: "nowrap" }}>
-        <ListItemButton component={NavLink} to="/">
-          <ListItemText primary="HOME" />
+  const menuItems = menuItemsData.map((item) => {
+    return (
+      <ListItem
+        key={item.caption}
+        sx={{ color: "black", whiteSpace: "nowrap" }}
+      >
+        <ListItemButton component={NavLink} to={`${item.to}`}>
+          <ListItemText
+            primary={item.caption}
+            sx={{ textTransform: "uppercase" }}
+          />
         </ListItemButton>
       </ListItem>
-      <ListItem sx={{ color: "black", whiteSpace: "nowrap" }}>
-        <ListItemButton component={NavLink} to="/t-shirts">
-          <ListItemText primary="T-SHIRTS" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem sx={{ color: "black", whiteSpace: "nowrap" }}>
-        <ListItemButton component={NavLink} to="/jeans">
-          <ListItemText primary="JEANS" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem sx={{ color: "black", whiteSpace: "nowrap" }}>
-        <ListItemButton component={NavLink} to="/shoes">
-          <ListItemText primary="SHOES" />
-        </ListItemButton>
-      </ListItem>
-    </>
-  );
+    );
+  });
 
   return (
     <Box sx={{ display: "flex" }}>
