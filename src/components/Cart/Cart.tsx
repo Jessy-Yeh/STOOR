@@ -85,6 +85,7 @@ const Cart = () => {
           marginRight: "auto",
           paddingTop: { xs: "16px", md: "24px" },
         }}
+        component="main"
       >
         {loading ? (
           <Box

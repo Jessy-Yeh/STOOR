@@ -1,6 +1,5 @@
-import { Box, Rating, Typography } from "@mui/material";
+import { Box, Button, Rating, Typography } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { NavLink } from "react-router-dom";
 import { ProductType } from "../../types";
@@ -85,19 +84,20 @@ const ProductCard = ({ product }: Props) => {
             from {product.rating.count} reviews
           </Typography>
         </Stack>
-        <NavLink to={`product/${product.id}`}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "black",
-              marginTop: "1rem",
-              width: "100%",
-              fontSize: "14px",
-            }}
-          >
-            VIEW PRODUCT
-          </Button>
-        </NavLink>
+        {/* @ts-ignore "to" prop exists on NavLink */}
+        <Button
+          LinkComponent={NavLink}
+          to={`product/${product.id}`}
+          variant="contained"
+          sx={{
+            backgroundColor: "black",
+            marginTop: "1rem",
+            width: "100%",
+            fontSize: "14px",
+          }}
+        >
+          VIEW PRODUCT
+        </Button>
       </Stack>
     </Stack>
   );

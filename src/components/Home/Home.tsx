@@ -49,6 +49,7 @@ const Home = () => {
           marginLeft: "auto",
           marginRight: "auto",
         }}
+        component="main"
       >
         <Banner />
         <Stack direction={{ xs: "column", md: "row" }}>
@@ -65,11 +66,21 @@ const Home = () => {
               rowSpacing={6}
               sx={{
                 margin: "0 auto",
-                paddingBottom: "5rem",
+                padding: "0 0 5rem",
               }}
+              component="ul"
             >
               {filteredProducts.map((product, index) => (
-                <Grid item xs={12} sm={6} lg={4} xl={3} key={index}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  lg={4}
+                  xl={3}
+                  key={index}
+                  component="li"
+                  sx={{ listStyleType: "none" }}
+                >
                   <ProductCard product={product} />
                 </Grid>
               ))}

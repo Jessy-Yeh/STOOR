@@ -56,7 +56,7 @@ const Product = () => {
 
   return (
     <Layout>
-      <Box>
+      <Box component="main">
         {bagMsg && (
           <Stack
             direction="row"

@@ -155,11 +155,9 @@ const Navbar = () => {
                 key="cart"
                 component={NavLink}
                 to="/cart"
-                sx={{ color: "black", padding: 0 }}
+                sx={{ color: "black", padding: "8px" }}
               >
-                <ListItemButton>
-                  <ShoppingCartIcon sx={{ fontSize: "1.7rem" }} />
-                </ListItemButton>
+                <ShoppingCartIcon sx={{ fontSize: "1.7rem" }} />
               </ListItem>
             </Box>
           </Stack>

@@ -14,6 +14,7 @@ const Tshirts = () => {
           marginRight: "auto",
           paddingTop: { xs: "16px", md: "24px" },
         }}
+        component="main"
       >
         <Typography>T-shirts</Typography>
       </Box>

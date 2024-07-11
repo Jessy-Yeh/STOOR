@@ -14,6 +14,7 @@ const Jeans = () => {
           marginRight: "auto",
           paddingTop: { xs: "16px", md: "24px" },
         }}
+        component="main"
       >
         <Typography>Jeans</Typography>
       </Box>

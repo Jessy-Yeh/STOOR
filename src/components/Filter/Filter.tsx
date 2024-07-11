@@ -78,7 +78,11 @@ const FilterOption = ({ checked, category, onChange }: FilterOptionProps) => {
         <Checkbox checked={checked} onChange={onChange} name={category} />
       }
       label={
-        <Typography sx={{ textTransform: "capitalize", fontSize: "14px " }}>
+        <Typography
+          display="inline"
+          component="span"
+          sx={{ textTransform: "capitalize", fontSize: "14px " }}
+        >
           {category}
         </Typography>
       }
