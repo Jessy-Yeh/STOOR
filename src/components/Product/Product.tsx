@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
-// import StarIcon from "@mui/icons-material/Star";
+import StarIcon from "@mui/icons-material/Star";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -19,9 +19,8 @@ import { Layout } from "../common/Layout";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import CircularProgress from "@mui/material/CircularProgress";
-// import { Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 
-// TODO: fix rating
 // TODO: have the select option required before it can be added to the cart
 
 const Product = () => {
@@ -216,17 +215,19 @@ const Product = () => {
                       PRODUCT RATING
                     </AccordionSummary>
                     <AccordionDetails sx={{ fontSize: "14px" }}>
-                      {/* <Rating
-                    name="rating"
-                    value={product?.rating.rate}
-                    readOnly
-                    precision={0.5}
-                    sx={{ color: "black", height: "100%" }}
-                    emptyIcon={
-                      <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-                    }
-                  /> */}
-                      {product?.rating.rate}
+                      <Rating
+                        name="rating"
+                        value={product?.rating.rate}
+                        readOnly
+                        precision={0.5}
+                        sx={{ color: "black", height: "100%" }}
+                        emptyIcon={
+                          <StarIcon
+                            style={{ opacity: 0.55 }}
+                            fontSize="inherit"
+                          />
+                        }
+                      />
                     </AccordionDetails>
                   </Accordion>
                   <Accordion
