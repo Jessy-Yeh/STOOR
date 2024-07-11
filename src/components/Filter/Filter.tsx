@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Box, Checkbox, Typography } from "@mui/material";
-import FormControlLabel from "@mui/material/FormControlLabel";
+import { Box, Typography } from "@mui/material";
+import { FilterOption } from "./FilterOption";
 
 interface FilterProps {
   categories: string[];
@@ -62,31 +62,6 @@ const Filter = ({ categories }: FilterProps) => {
         );
       })}
     </Box>
-  );
-};
-
-interface FilterOptionProps {
-  checked: boolean;
-  category: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const FilterOption = ({ checked, category, onChange }: FilterOptionProps) => {
-  return (
-    <FormControlLabel
-      control={
-        <Checkbox checked={checked} onChange={onChange} name={category} />
-      }
-      label={
-        <Typography
-          display="inline"
-          component="span"
-          sx={{ textTransform: "capitalize", fontSize: "14px " }}
-        >
-          {category}
-        </Typography>
-      }
-    />
   );
 };
 

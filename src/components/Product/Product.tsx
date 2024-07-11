@@ -22,6 +22,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Rating } from "@mui/material";
 
 // TODO: have the select option required before it can be added to the cart
+// TODO: show "go to cart" button after user adds item to cart
 
 const Product = () => {
   const [product, setProduct] = useState<ProductType | undefined>();
@@ -42,8 +43,8 @@ const Product = () => {
 
   const handleClick = () => {
     const reqBody = { products: [{ productId: id, quantity: 1 }] };
+
     axios.post("https://fakestoreapi.com/carts", reqBody).then((res) => {
-      console.log(res.data);
       setBagMsg(true);
       // TODO: hide message after a few seconds
       // TODO: store cart in local storage
@@ -162,11 +163,10 @@ const Product = () => {
                       value={size}
                       label="SELECT SIZE"
                       onChange={(e) => setSize(e.target.value)}
-                      // sx={{ backgroundColor: "#FFFFFF" }}
                     >
-                      <MenuItem value={"small"}>SMALL</MenuItem>
-                      <MenuItem value={"medium"}>MEDIUM</MenuItem>
-                      <MenuItem value={"large"}>LARGE</MenuItem>
+                      <MenuItem value="small">SMALL</MenuItem>
+                      <MenuItem value="medium">MEDIUM</MenuItem>
+                      <MenuItem value="large">LARGE</MenuItem>
                     </Select>
                   </FormControl>
                 </Box>

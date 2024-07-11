@@ -24,9 +24,7 @@ type UserProductType = {
   quantity: number;
 };
 
-function createData(name: string, price: number, quantity: number) {
-  return { name, price, quantity };
-}
+// TODO: add "delete" icon button so user can remove item from cart
 
 const Cart = () => {
   const [userProducts, setUserProducts] = useState<UserProductType[]>([]);
@@ -66,11 +64,11 @@ const Cart = () => {
 
   const rows = allUserProductsInfo.map((productInfo) => {
     const productDetails = productInfo.info[0];
-    return createData(
-      productDetails.title,
-      productDetails.price,
-      productInfo.quantity
-    );
+    return {
+      name: productDetails.title,
+      price: productDetails.price,
+      quantity: productInfo.quantity,
+    };
   });
 
   return (
@@ -152,6 +150,7 @@ const Cart = () => {
                   fontSize: "14px",
                   marginTop: "3rem",
                 }}
+                onClick={() => alert("checkout not implemented yet!")}
               >
                 PROCEED TO CHECKOUT
               </Button>

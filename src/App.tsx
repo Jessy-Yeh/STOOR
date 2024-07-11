@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import "./App.css";
 import Home from "./components/Home/Home";
-
 import Checkout from "./components/Product/Product";
 import Tshirts from "./components/T-shirts/Tshirts";
 import Jeans from "./components/Jeans/Jeans";
