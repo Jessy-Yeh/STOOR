@@ -8,6 +8,7 @@ import Tshirts from "./components/T-shirts/Tshirts";
 import Jeans from "./components/Jeans/Jeans";
 import Shoes from "./components/Shoes/Shoes";
 import Product from "./components/Product/Product";
+import Cart from "./components/Cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "shoes",
     element: <Shoes />,
+  },
+  {
+    path: "cart",
+    element: <Cart />,
   },
 ]);
 
