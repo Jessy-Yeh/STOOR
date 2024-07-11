@@ -18,6 +18,7 @@ import { NavLink } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const drawerWidth = 200;
 
@@ -114,7 +115,7 @@ const Navbar = () => {
             flexGrow={1}
             direction="row"
             alignItems="center"
-            justifyContent="space-between"
+            justifyContent={isLargeScreen ? "space-between" : "flex-end"}
             sx={{ maxWidth: "2000px", margin: "0 auto" }}
           >
             {isLargeScreen && (
@@ -149,20 +150,18 @@ const Navbar = () => {
               </NavLink>
             </Typography>
 
-            {isLargeScreen && (
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <ListItem
-                  key="cart"
-                  component={NavLink}
-                  to="/cart"
-                  sx={{ color: "black" }}
-                >
-                  <ListItemButton>
-                    <ListItemText primary="CART" />
-                  </ListItemButton>
-                </ListItem>
-              </Box>
-            )}
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <ListItem
+                key="cart"
+                component={NavLink}
+                to="/cart"
+                sx={{ color: "black", padding: 0 }}
+              >
+                <ListItemButton>
+                  <ShoppingCartIcon sx={{ fontSize: "1.7rem" }} />
+                </ListItemButton>
+              </ListItem>
+            </Box>
           </Stack>
         </Toolbar>
       </AppBar>
@@ -191,19 +190,7 @@ const Navbar = () => {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          <List>
-            {menuItems}
-            <ListItem
-              key="cart"
-              component={NavLink}
-              to="/cart"
-              sx={{ color: "black" }}
-            >
-              <ListItemButton>
-                <ListItemText primary="CART" />
-              </ListItemButton>
-            </ListItem>
-          </List>
+          <List>{menuItems}</List>
         </Drawer>
       )}
     </Box>
