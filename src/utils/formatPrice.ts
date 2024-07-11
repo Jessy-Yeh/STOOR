@@ -1,4 +1,4 @@
-export const formatPrice = (price: number) => {
+export const formatPrice = (price: number): string => {
   const priceStr = price.toString();
 
   if (priceStr.includes(".")) {

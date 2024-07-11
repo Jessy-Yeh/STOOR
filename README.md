@@ -6,6 +6,8 @@ Front-end for [fakestoreAPI](https://fakestoreapi.com/docs).
 
 Install dependencies by running `npm i`, then run `npm run dev` to start the local server.
 
+To run tests, use `npm run test`.
+
 ## Tech Stack
 
 - Typescript
@@ -38,3 +40,5 @@ Install dependencies by running `npm i`, then run `npm run dev` to start the loc
 ✨ The filtered categories are reflected in the URL, which is useful for users to share links.
 
 ✨ The label of highly rated appears only when the rating of the product is higher than 4.
+
+✨ Add unit tests (WIP)
