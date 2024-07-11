@@ -18,21 +18,23 @@ const ProductCard = ({ product }: Props) => {
         justifyContent: "space-between",
       }}
     >
-      <Box
-        sx={{
-          aspectRatio: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <img
-          src={product.image}
-          alt={product.description}
-          style={{ maxWidth: "100%", maxHeight: "300px" }}
-        />
-      </Box>
+      <NavLink to={`product/${product.id}`}>
+        <Box
+          sx={{
+            aspectRatio: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={product.image}
+            alt={product.description}
+            style={{ maxWidth: "100%", maxHeight: "300px" }}
+          />
+        </Box>
+      </NavLink>
       <Stack>
         <Stack
           direction="row"
