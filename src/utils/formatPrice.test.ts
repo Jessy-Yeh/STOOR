@@ -1,21 +1,34 @@
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
+import { formatPrice } from "./formatPrice";
 
 describe("when price is a whole number", () => {
-  it.todo("should return the price as it is");
+  it("should return the price as it is", () => {
+    const price = 39;
+    const result = formatPrice(price);
+
+    expect(result).toBe("39");
+  });
 });
 
 describe("when price contains a decimal point", () => {
-  it.todo("should return the price as it is if there are two decimal places");
+  it("should return the price as it is if there are two decimal places", () => {
+    const price = 39.55;
+    const result = formatPrice(price);
 
-  it.todo(
-    "should return the price to two decimal places if there is only one "
-  );
+    expect(result).toBe("39.55");
+  });
 
-  it.todo(
-    "should return the price to two decimal places if there are more than two"
-  );
+  it("should return the price to two decimal places if there is only one ", () => {
+    const price = 39.5;
+    const result = formatPrice(price);
 
-  it.todo(
-    "should return the price to two decimal places if there no digits after the decimal point"
-  );
+    expect(result).toBe("39.50");
+  });
+
+  it("should return the price to two decimal places if there are more than two", () => {
+    const price = 39.5432;
+    const result = formatPrice(price);
+
+    expect(result).toBe("39.54");
+  });
 });

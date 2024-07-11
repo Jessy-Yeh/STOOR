@@ -10,6 +10,8 @@ export const formatPrice = (price: number): string => {
       fractionalPart += "0";
     } else if (fractionalPart.length === 0) {
       fractionalPart = "00";
+    } else if (fractionalPart.length > 2) {
+      fractionalPart = fractionalPart.slice(0, 2);
     }
 
     return `${wholePart}.${fractionalPart}`;
