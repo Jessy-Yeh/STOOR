@@ -21,10 +21,7 @@ import MenuItem from "@mui/material/MenuItem";
 import CircularProgress from "@mui/material/CircularProgress";
 // import { Rating } from "@mui/material";
 
-// add loading spinner (done)
 // TODO: fix rating
-// TODO: fix select dropdown
-// fix accordion margin styles (done)
 // TODO: have the select option required before it can be added to the cart
 
 const Product = () => {
@@ -67,6 +64,7 @@ const Product = () => {
               left: 0,
               right: 0,
               padding: "1rem",
+              zIndex: 99,
             }}
             justifyContent="center"
             alignItems="center"
