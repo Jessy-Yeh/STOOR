@@ -14,6 +14,7 @@ To run tests, use `npm run test`.
 - React
 - Material UI
 - Vite
+- Cypress
 
 ## Task Achievements
 
@@ -41,4 +42,4 @@ To run tests, use `npm run test`.
 
 ✨ The label of highly rated appears only when the rating of the product is higher than 4.
 
-✨ Add unit tests (WIP)
+✨ Add unit tests and e2e test

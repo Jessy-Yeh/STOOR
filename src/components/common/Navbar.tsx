@@ -155,7 +155,9 @@ const Navbar = () => {
                 key="cart"
                 component={NavLink}
                 to="/cart"
+                title="Cart"
                 sx={{ color: "black", padding: "8px" }}
+                data-test-id="cart-link"
               >
                 <ShoppingCartIcon sx={{ fontSize: "1.7rem" }} />
               </ListItem>
