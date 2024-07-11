@@ -46,7 +46,7 @@ const Product = () => {
   const handleClick = () => {
     const reqBody = { products: [{ productId: id, quantity: 1 }] };
 
-    axios.post("https://fakestoreapi.com/carts", reqBody).then((res) => {
+    axios.post("https://fakestoreapi.com/carts", reqBody).then(() => {
       setBagMsg(true);
       // TODO: hide message after a few seconds
       // TODO: store cart in local storage
