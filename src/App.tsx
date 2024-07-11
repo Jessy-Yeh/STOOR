@@ -7,12 +7,12 @@ import Jeans from "./components/Jeans/Jeans";
 import Shoes from "./components/Shoes/Shoes";
 import Product from "./components/Product/Product";
 import Cart from "./components/Cart/Cart";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-    // errorElement: <ErrorPage />,
   },
   {
     path: "product/:id",
@@ -37,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "cart",
     element: <Cart />,
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
