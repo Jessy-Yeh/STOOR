@@ -2,7 +2,9 @@
 
 Front-end for [fakestoreAPI](https://fakestoreapi.com/docs).
 
-## Instructions
+View the deployed site at [stoor-jiejunyeh.netlify.app](https://stoor-jiejunyeh.netlify.app/).
+
+## Instructions for running locally
 
 Install dependencies by running `npm i`, then run `npm run dev` to start the local server.
 
@@ -43,3 +45,7 @@ To run tests, use `npm run test`.
 ✨ The label of highly rated appears only when the rating of the product is higher than 4.
 
 ✨ Add unit tests and e2e test
+
+## Credits
+
+Bird icon from [Icons8](https://icons8.com/icon/sOIcBVC4zm7T/bird)!
