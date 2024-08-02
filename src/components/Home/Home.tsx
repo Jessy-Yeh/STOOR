@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ProductType } from "../../types";
 import { Layout } from "../common/Layout";
 import { Error } from "../common/Error";
-import Banner from "../Banner/Banner";
+import Banner from "../common/Banner";
 import Filter from "../Filter/Filter";
 import ProductCard from "../ProductCard/ProductCard";
 import Grid from "@mui/material/Grid";
@@ -65,7 +65,15 @@ const Home = () => {
           </Box>
         ) : (
           <>
-            <Banner />
+            <Banner
+              title="STOOR"
+              description="Lorem ipsum dolor sit amet consectetur. Nullam leo condimentum
+            turpis aliquet. Fermentum purus amet vitae sed nam imperdiet. Sit
+            cursus sed commodo aliquet ultricies mi volutpat tortor at. A
+            gravida enim ut quis et in lectus. Dolor tortor facilisi egestas
+            faucibus nulla. Nibh accumsan felis tempor convallis nunc porta
+            integer."
+            />
             <Stack direction={{ xs: "column", md: "row" }}>
               <Filter categories={uniqueCategories} />
 
