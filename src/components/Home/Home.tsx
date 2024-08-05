@@ -6,10 +6,9 @@ import { Layout } from "../common/Layout";
 import { Error } from "../common/Error";
 import Banner from "../common/Banner";
 import Filter from "../Filter/Filter";
-import ProductCard from "../ProductCard/ProductCard";
-import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import { Box, CircularProgress } from "@mui/material";
+import Products from "../Products/Products";
 
 const Home = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -82,31 +81,7 @@ const Home = () => {
                   <CircularProgress />
                 </Box>
               ) : (
-                <Grid
-                  container
-                  spacing={{ xs: 2, sm: 4, xl: 6 }}
-                  rowSpacing={6}
-                  sx={{
-                    margin: "0 auto",
-                    padding: "0 0 5rem",
-                  }}
-                  component="ul"
-                >
-                  {filteredProducts.map((product, index) => (
-                    <Grid
-                      item
-                      xs={12}
-                      sm={6}
-                      lg={4}
-                      xl={3}
-                      key={index}
-                      component="li"
-                      sx={{ listStyleType: "none" }}
-                    >
-                      <ProductCard product={product} />
-                    </Grid>
-                  ))}
-                </Grid>
+                <Products filteredProducts={filteredProducts} />
               )}
             </Stack>
           </>
