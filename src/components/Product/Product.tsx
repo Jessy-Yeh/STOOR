@@ -1,15 +1,4 @@
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
-import StarIcon from "@mui/icons-material/Star";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -17,10 +6,17 @@ import axios from "axios";
 import { ProductType } from "../../types";
 import { Layout } from "../common/Layout";
 import { Error } from "../common/Error";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import CircularProgress from "@mui/material/CircularProgress";
-import { Rating } from "@mui/material";
+
+import { Rating } from "../common/Rating";
+import CheckboxIcon from "../common/CheckboxIcon";
+import Spinner from "../common/Spinner";
+
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@headlessui/react";
+import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 // TODO: have the select option required before it can be added to the cart
 // TODO: show "go to cart" button after user adds item to cart
@@ -28,11 +24,21 @@ import { Rating } from "@mui/material";
 const Product = () => {
   const [product, setProduct] = useState<ProductType | undefined>();
   const [bagMsg, setBagMsg] = useState(false);
-  const [size, setSize] = useState("small");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const { id } = useParams();
+
+  const productDetails = [
+    { section: "Description", content: product?.description },
+    {
+      section: "Product Rating",
+      content: (
+        <Rating rate={product?.rating.rate} count={product?.rating.count} />
+      ),
+    },
+    { section: "Delivery Options", content: "WIP" },
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -56,219 +62,105 @@ const Product = () => {
   return (
     <Layout>
       {error ? (
-        <Box
-          sx={{
-            paddingLeft: { xs: "16px", md: "24px" },
-            paddingRight: { xs: "16px", md: "24px" },
-            maxWidth: "1800px",
-            marginTop: "97.1px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            paddingTop: { xs: "16px", md: "24px" },
-          }}
-          component="main"
-        >
+        <main className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <Error />
-        </Box>
+        </main>
       ) : (
-        <Box component="main">
+        <main>
           {bagMsg && (
-            <Stack
-              direction="row"
-              sx={{
-                backgroundColor: "#6FCF97",
-                position: "absolute",
-                top: "98px",
-                left: 0,
-                right: 0,
-                padding: "1rem",
-                zIndex: 99,
-              }}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <CheckBoxIcon sx={{ color: "#075227" }} />
+            <div className="flex row bg-green-500 absolute top-[98px] left-0 right-0 p-4 z-50 justify-center items-center">
+              <CheckboxIcon />
               <Typography sx={{ marginLeft: "1rem", fontSize: "14px" }}>
                 Thank you, {product?.title} has been added to your bag!
               </Typography>
-            </Stack>
+            </div>
           )}
 
           {loading ? (
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "100vh",
-                width: "100vw",
-              }}
-            >
-              <CircularProgress />
-            </Box>
+            <div className="flex justify-center items-center h-screen w-screen">
+              <Spinner />
+            </div>
           ) : (
-            <Stack
-              direction={{ md: "row" }}
-              sx={{
-                flex: "1",
-                minHeight: "100vh",
-              }}
-            >
-              <Stack
-                justifyContent="center"
-                alignItems="center"
-                p={{ xs: "0 1rem" }}
-                m={{ xs: "120px 0 1rem 0", md: "0" }}
-                flex="1"
-                sx={{
-                  height: { md: "100vh" },
-                  position: "relative",
-                }}
-              >
+            <div className="flex flex-col sm:flex-row flex-1 min-h-screen">
+              <div className="flex justify-center items-center py-0 px-4 mt-32 mr-0 mb-4 ml-0 md: m-0 flex-1 md:h-screen relative">
                 {product && product?.rating.rate >= 4 ? (
-                  <Typography
-                    sx={{
-                      border: "1px #E0E0E0 solid",
-                      borderRadius: "50px",
-                      padding: "5px 24px",
-                      position: "absolute",
-                      right: { xs: "10px", md: "18px" },
-                      top: { xs: 0, md: "118px" },
-                      fontSize: "14px",
-                      fontWeight: 500,
-                      textTransform: "capitalize",
-                    }}
-                  >
+                  <p className="border-solid border-slate-300 border rounded-full absolute right-[10px] top-0 md:right-[18px] md:top-[118px]  py-[5px] px-[24px] text-[14px] font-semibold text-[capitalize]">
                     Highly Rated
-                  </Typography>
+                  </p>
                 ) : null}
-                <Box sx={{ margin: { xs: "60px 1rem 1rem 1rem" } }}>
+                <div className="mt-[60px] mr-1 mb-1 ml-1">
                   <img
                     src={product?.image}
                     alt={product?.description}
-                    style={{
-                      width: "100%",
-                      maxWidth: "350px",
-                    }}
+                    className="w-full max-w-[350px]"
                   />
-                </Box>
-              </Stack>
+                </div>
+              </div>
 
-              <Stack
-                sx={{
-                  backgroundColor: "#F4F4F4",
-                  height: "100vh",
-                  justifyContent: { md: "center" },
-                  alignItems: "center",
-                }}
-                flex="1"
-                p={{ xs: "1rem", md: "2rem" }}
-              >
-                <Box sx={{ maxWidth: "500px" }}>
-                  <Typography
-                    variant="h2"
-                    sx={{ fontSize: "32px", fontWeight: 500 }}
-                    m="0 0 4rem 0"
-                  >
+              <div className="flex flex-1 bg-gray-100 h-screen justify-center items-center p-4 md:p-8">
+                <div className="min-w-[300px] max-w-[500px]">
+                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-16">
                     {product?.title}
-                  </Typography>
-                  <Box sx={{ marginTop: "1rem" }}>
-                    <FormControl fullWidth>
-                      <InputLabel id="select-label">SELECT SIZE</InputLabel>
-                      <Select
-                        labelId="select-label"
-                        id="select"
-                        value={size}
-                        label="SELECT SIZE"
-                        onChange={(e) => setSize(e.target.value)}
-                      >
-                        <MenuItem value="small">SMALL</MenuItem>
-                        <MenuItem value="medium">MEDIUM</MenuItem>
-                        <MenuItem value="large">LARGE</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Box>
+                  </h1>
+                  <div mt-1>
+                    <label
+                      htmlFor="size"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      SELECT SIZE
+                    </label>
+                    <select
+                      id="size"
+                      name="size"
+                      defaultValue="SMALL"
+                      className="mt-2 block w-full rounded-md border-0 py-5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    >
+                      <option>SMALL</option>
+                      <option>MEDIUM</option>
+                      <option>LARGE</option>
+                    </select>
+                  </div>
 
-                  <Button
-                    variant="contained"
-                    sx={{
-                      backgroundColor: "black",
-                      marginTop: "1rem",
-                      width: "100%",
-                      height: "60.47px",
-                    }}
+                  <button
+                    type="button"
+                    className="bg-black mt-4 w-full h-16 text-white rounded-md"
                     onClick={handleClick}
                   >
                     ADD TO BAG
-                  </Button>
+                  </button>
 
-                  <Box sx={{ marginTop: "4rem" }}>
-                    <Accordion
-                      sx={{
-                        backgroundColor: "#F4F4F4",
-                        boxShadow: "none",
-                      }}
-                      disableGutters
-                    >
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1-content"
-                        id="panel1-header"
-                      >
-                        DESCRIPTION
-                      </AccordionSummary>
-                      <AccordionDetails sx={{ fontSize: "14px" }}>
-                        {product?.description}
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion
-                      disableGutters
-                      sx={{ backgroundColor: "#F4F4F4", boxShadow: "none" }}
-                    >
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel2-content"
-                        id="panel2-header"
-                      >
-                        PRODUCT RATING
-                      </AccordionSummary>
-                      <AccordionDetails sx={{ fontSize: "14px" }}>
-                        <Rating
-                          name="rating"
-                          value={product?.rating.rate}
-                          readOnly
-                          precision={0.5}
-                          sx={{ color: "black", height: "100%" }}
-                          emptyIcon={
-                            <StarIcon
-                              style={{ opacity: 0.55 }}
-                              fontSize="inherit"
-                            />
-                          }
-                        />
-                      </AccordionDetails>
-                    </Accordion>
-                    <Accordion
-                      disableGutters
-                      sx={{ backgroundColor: "#F4F4F4", boxShadow: "none" }}
-                    >
-                      <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel3-content"
-                        id="panel3-header"
-                      >
-                        DELIVERY OPTIONS
-                      </AccordionSummary>
-                      <AccordionDetails sx={{ fontSize: "14px" }}>
-                        WIP
-                      </AccordionDetails>
-                    </Accordion>
-                  </Box>
-                </Box>
-              </Stack>
-            </Stack>
+                  <div className="divide-y divide-gray-200 border-t mt-10 max-w-full">
+                    {productDetails &&
+                      productDetails.map((detail) => (
+                        <Disclosure key={detail.section} as="div">
+                          <h3>
+                            <DisclosureButton className="group relative flex w-full items-center justify-between py-6 text-left">
+                              <span className="text-sm font-medium text-gray-900 uppercase">
+                                {detail.section}
+                              </span>
+                              <span className="ml-6 flex items-center">
+                                <PlusIcon
+                                  aria-hidden="true"
+                                  className="block h-6 w-6 text-gray-400 group-hover:text-gray-500 group-data-[open]:hidden"
+                                />
+                                <MinusIcon
+                                  aria-hidden="true"
+                                  className="hidden h-6 w-6 text-indigo-400 group-hover:text-indigo-500 group-data-[open]:block"
+                                />
+                              </span>
+                            </DisclosureButton>
+                          </h3>
+                          <DisclosurePanel className="prose prose-sm pb-6">
+                            <ul role="list">{detail.content}</ul>
+                          </DisclosurePanel>
+                        </Disclosure>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
-        </Box>
+        </main>
       )}
     </Layout>
   );
