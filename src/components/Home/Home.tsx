@@ -57,8 +57,10 @@ const Home = () => {
             faucibus nulla. Nibh accumsan felis tempor convallis nunc porta
             integer."
             />
-            <div className="flex flex-col md:flex-row">
-              <Filter categories={uniqueCategories} />
+            <div className="flex flex-col items-center lg:items-start lg:flex-row">
+              <div className="min-w-40">
+                <Filter categories={uniqueCategories} />
+              </div>
 
               {loading ? (
                 <div className="flex my-[250px] mx-auto">

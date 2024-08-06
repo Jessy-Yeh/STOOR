@@ -9,9 +9,9 @@ interface Props {
 
 const Products = ({ filteredProducts }: Props) => {
   return (
-    <div>
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <div className="mt-1 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:grid-cols-3 md:gap-x-8 xl:grid-cols-4 xl:gap-x-10">
+    <div className="flex-1">
+      <div className="px-4 py-16 sm:px-6 sm:py-10 lg:px-8 lg:ml-8">
+        <div className="mt-1 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 md:gap-x-8 xl:grid-cols-3 xl:gap-x-10 2xl:grid-cols-4">
           {filteredProducts.map((product) => (
             <div key={product.id} className="relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  lg:aspect-none group-hover:opacity-75 lg:h-80 flex justify-center">
