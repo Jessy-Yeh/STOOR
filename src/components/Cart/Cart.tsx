@@ -3,22 +3,8 @@ import axios from "axios";
 import { Layout } from "../common/Layout";
 import { Error } from "../common/Error";
 import { ProductType } from "../../types";
-import { formatPrice } from "../../utils/formatPrice";
-
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Stack,
-  Typography,
-} from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import Spinner from "../common/Spinner";
+import { NavLink } from "react-router-dom";
 
 type UserProductType = {
   productId: number;
@@ -68,105 +54,105 @@ const Cart = () => {
       name: productDetails.title,
       price: productDetails.price,
       quantity: productInfo.quantity,
+      image: productDetails.image,
     };
   });
 
   return (
     <Layout>
-      <Box
-        sx={{
-          paddingLeft: { xs: "16px", md: "24px" },
-          paddingRight: { xs: "16px", md: "24px" },
-          maxWidth: "1800px",
-          marginTop: "97.1px",
-          marginLeft: "auto",
-          marginRight: "auto",
-          paddingTop: { xs: "16px", md: "24px" },
-        }}
-        component="main"
-      >
+      <div className="px-4 md:px-6 max-w-7xl mx-auto mt-16">
         {error ? (
-          <Box
-            sx={{
-              paddingTop: { xs: "16px", md: "24px" },
-            }}
-            component="main"
-          >
+          <div className="pt-4 md:pt-6">
             <Error />
-          </Box>
+          </div>
         ) : loading ? (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "70vh",
-              width: "100vw",
-            }}
-          >
-            <CircularProgress />
-          </Box>
+          <div className="flex justify-center items-center h-70vh w-full">
+            <Spinner />
+          </div>
         ) : (
           <>
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: "24px",
-                fontWeight: "500",
-                textAlign: "center",
-                marginBottom: "2rem",
-                marginTop: "3rem",
-              }}
-            >
+            <h1 className="text-2xl font-semibold text-center mb-8 mt-24">
               Your Cart
-            </Typography>
+            </h1>
 
-            <Stack justifyContent="center" alignItems="center">
-              <TableContainer component={Paper} sx={{ maxWidth: 1000 }}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Product Name</TableCell>
-                      <TableCell align="right">Price</TableCell>
-                      <TableCell align="right">Quantity</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {row.name}
-                        </TableCell>
-                        <TableCell align="right">
-                          £{formatPrice(row.price)}
-                        </TableCell>
-                        <TableCell align="right">{row.quantity}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "black",
-                  width: "300px",
-                  fontSize: "14px",
-                  marginTop: "3rem",
-                }}
-                onClick={() => alert("checkout not implemented yet!")}
-              >
-                PROCEED TO CHECKOUT
-              </Button>
-            </Stack>
+            <form className="mt-12">
+              <section aria-labelledby="cart-heading">
+                <h2 id="cart-heading" className="sr-only">
+                  Items in your shopping cart
+                </h2>
+
+                <ul
+                  role="list"
+                  className="divide-y divide-gray-200 border-b border-t border-gray-200"
+                >
+                  {rows.map((product) => (
+                    <li key={product.name} className="flex py-6">
+                      <div className="flex-shrink-0">
+                        <img
+                          alt={product.name}
+                          src={product.image}
+                          className="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"
+                        />
+                      </div>
+
+                      <div className="ml-4 flex flex-1 flex-col sm:ml-6">
+                        <div>
+                          <div className="flex justify-between">
+                            <h4 className="text-sm">{product.name}</h4>
+                            <p className="ml-4 text-sm font-medium text-gray-900">
+                              £{product.price}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 flex flex-1 items-end justify-between">
+                          <div className="ml-4">
+                            <button
+                              type="button"
+                              className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                              onClick={() =>
+                                alert("remove not implemented yet!")
+                              }
+                            >
+                              <span>Remove</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Order summary */}
+              <section aria-labelledby="summary-heading" className="mt-10">
+                <div className="mt-10">
+                  <button
+                    type="submit"
+                    className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    onClick={() => alert("checkout not implemented yet!")}
+                  >
+                    Checkout
+                  </button>
+                </div>
+
+                <div className="mt-6 text-center text-sm">
+                  <p>
+                    or{" "}
+                    <NavLink
+                      to="/"
+                      className="font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      Continue Shopping
+                      <span aria-hidden="true"> &rarr;</span>
+                    </NavLink>
+                  </p>
+                </div>
+              </section>
+            </form>
           </>
         )}
-      </Box>
+      </div>
     </Layout>
   );
 };
