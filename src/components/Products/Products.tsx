@@ -1,4 +1,3 @@
-// import { Rating } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { ProductType } from "../../types/index.ts";
 import { Rating } from "../common/Rating";
@@ -41,7 +40,7 @@ const Products = ({ filteredProducts }: Props) => {
               </div>
               <NavLink
                 to={`product/${product.id}`}
-                className="relative flex items-center justify-center rounded-md border border-transparent bg-black px-8 py-2 text-sm font-medium text-white hover:bg-gray-200 mt-4"
+                className="relative flex items-center justify-center rounded-md border border-transparent bg-black px-8 py-2 text-sm font-medium text-white hover:bg-gray-500 mt-4"
               >
                 VIEW PRODUCT
               </NavLink>

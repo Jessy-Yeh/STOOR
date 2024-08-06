@@ -1,5 +1,3 @@
-import Typography from "@mui/material/Typography";
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -16,7 +14,6 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
-import CheckboxIcon from "../common/CheckboxIcon";
 
 // TODO: have the select option required before it can be added to the cart
 // TODO: show "go to cart" button after user adds item to cart
@@ -30,11 +27,17 @@ const Product = () => {
   const { id } = useParams();
 
   const productDetails = [
-    { section: "Description", content: product?.description },
+    {
+      section: "Description",
+      content: product?.description ?? "No description available",
+    },
     {
       section: "Product Rating",
       content: (
-        <Rating rate={product?.rating.rate} count={product?.rating.count} />
+        <Rating
+          rate={product?.rating.rate ?? 0}
+          count={product?.rating.count ?? 0}
+        />
       ),
     },
     { section: "Delivery Options", content: "WIP" },
@@ -62,17 +65,16 @@ const Product = () => {
   return (
     <Layout>
       {error ? (
-        <main className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <Error />
-        </main>
+        </div>
       ) : (
         <main>
           {bagMsg && (
-            <div className="flex row bg-green-500 absolute top-[98px] left-0 right-0 p-4 z-50 justify-center items-center">
-              <CheckboxIcon />
-              <Typography sx={{ marginLeft: "1rem", fontSize: "14px" }}>
+            <div className="flex row bg-green-500 absolute top-[65px] left-0 right-0 p-4 z-50 justify-center items-center">
+              <p className="text-sm">
                 Thank you, {product?.title} has been added to your bag!
-              </Typography>
+              </p>
             </div>
           )}
 
