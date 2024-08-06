@@ -8,7 +8,6 @@ import { Layout } from "../common/Layout";
 import { Error } from "../common/Error";
 
 import { Rating } from "../common/Rating";
-import CheckboxIcon from "../common/CheckboxIcon";
 import Spinner from "../common/Spinner";
 
 import {
@@ -17,6 +16,7 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import CheckboxIcon from "../common/CheckboxIcon";
 
 // TODO: have the select option required before it can be added to the cart
 // TODO: show "go to cart" button after user adds item to cart
@@ -82,9 +82,9 @@ const Product = () => {
             </div>
           ) : (
             <div className="flex flex-col sm:flex-row flex-1 min-h-screen">
-              <div className="flex justify-center items-center py-0 px-4 mt-32 mr-0 mb-4 ml-0 md: m-0 flex-1 md:h-screen relative">
+              <div className="flex justify-center items-center py-0 px-4  mr-0 mb-4 ml-0 md:m-0 flex-1 md:h-screen relative">
                 {product && product?.rating.rate >= 4 ? (
-                  <p className="border-solid border-slate-300 border rounded-full absolute right-[10px] top-0 md:right-[18px] md:top-[118px]  py-[5px] px-[24px] text-[14px] font-semibold text-[capitalize]">
+                  <p className="border-solid border-slate-300 border rounded-full absolute right-[10px] top-0 md:right-[18px] md:top-[118px] py-[5px] px-[24px] text-[14px] font-semibold uppercase">
                     Highly Rated
                   </p>
                 ) : null}
@@ -98,7 +98,7 @@ const Product = () => {
               </div>
 
               <div className="flex flex-1 bg-gray-100 h-screen justify-center items-center p-4 md:p-8">
-                <div className="min-w-[300px] max-w-[500px]">
+                <div className="flex-1 max-w-[500px]">
                   <h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-16">
                     {product?.title}
                   </h1>
