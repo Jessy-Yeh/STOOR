@@ -109,7 +109,7 @@ const Cart = () => {
                           <div className="ml-4">
                             <button
                               type="button"
-                              className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                              className="text-sm font-medium text-slate-400 hover:text-indigo-500"
                               onClick={() =>
                                 alert("remove not implemented yet!")
                               }
@@ -129,7 +129,7 @@ const Cart = () => {
                 <div className="mt-10">
                   <button
                     type="submit"
-                    className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                    className="w-full rounded-md border border-transparent bg-black px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                     onClick={() => alert("checkout not implemented yet!")}
                   >
                     Checkout
@@ -141,7 +141,7 @@ const Cart = () => {
                     or{" "}
                     <NavLink
                       to="/"
-                      className="font-medium text-indigo-600 hover:text-indigo-500"
+                      className="font-medium text-slate-500 hover:text-indigo-500"
                     >
                       Continue Shopping
                       <span aria-hidden="true"> &rarr;</span>

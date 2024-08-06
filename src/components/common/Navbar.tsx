@@ -11,7 +11,7 @@ const Navbar = () => {
     <>
       <Disclosure
         as="nav"
-        className="bg-orange-100 shadow fixed top-0 left-0 right-0 z-50"
+        className="bg-orange-50 shadow fixed top-0 left-0 right-0 z-50"
       >
         <div className="mx-auto max-w-[1800px] px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 justify-between">
@@ -59,7 +59,7 @@ const Navbar = () => {
                 </NavLink>
               </div>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center">
+            <div className="hidden sm:ml-6 sm:flex ">
               <NavLink
                 to="/cart"
                 className={({ isActive }) =>
@@ -140,7 +140,7 @@ const Navbar = () => {
               SHOES
             </NavLink>
           </div>
-          <div className="border-t border-gray-200 pb-3 pt-4">
+          <div className="pb-3">
             <NavLink
               to="/cart"
               className={({ isActive }) =>
