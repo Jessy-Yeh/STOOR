@@ -6,9 +6,8 @@ import { Layout } from "../common/Layout";
 import { Error } from "../common/Error";
 import Banner from "../common/Banner";
 import Filter from "../Filter/Filter";
-import Stack from "@mui/material/Stack";
-import { Box, CircularProgress } from "@mui/material";
 import Products from "../Products/Products";
+import Spinner from "../common/Spinner";
 
 const Home = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -42,26 +41,11 @@ const Home = () => {
 
   return (
     <Layout>
-      <Box
-        sx={{
-          paddingLeft: { xs: "16px", md: "24px" },
-          paddingRight: { xs: "16px", md: "24px" },
-          maxWidth: "1800px",
-          marginTop: "97.1px",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-        component="main"
-      >
+      <main className="px-4 md:px-6 max-w-[1800px] mt-16 mx-auto">
         {error ? (
-          <Box
-            sx={{
-              paddingTop: { xs: "16px", md: "24px" },
-            }}
-            component="main"
-          >
+          <div className="pt-4, md:pt-6">
             <Error />
-          </Box>
+          </div>
         ) : (
           <>
             <Banner
@@ -73,20 +57,20 @@ const Home = () => {
             faucibus nulla. Nibh accumsan felis tempor convallis nunc porta
             integer."
             />
-            <Stack direction={{ xs: "column", md: "row" }}>
+            <div className="flex flex-col md:flex-row">
               <Filter categories={uniqueCategories} />
 
               {loading ? (
-                <Box sx={{ display: "flex", margin: "250px auto" }}>
-                  <CircularProgress />
-                </Box>
+                <div className="flex my-[250px] mx-auto">
+                  <Spinner />
+                </div>
               ) : (
                 <Products filteredProducts={filteredProducts} />
               )}
-            </Stack>
+            </div>
           </>
         )}
-      </Box>
+      </main>
     </Layout>
   );
 };

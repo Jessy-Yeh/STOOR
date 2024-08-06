@@ -1,5 +1,3 @@
-import { Divider } from "@mui/material";
-
 interface Props {
   title: string;
   description: string;
@@ -17,7 +15,11 @@ const Banner = ({ title, description }: Props) => {
         </div>
       </div>
 
-      <Divider />
+      <div className="relative">
+        <div aria-hidden="true" className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-300" />
+        </div>
+      </div>
     </>
   );
 };
